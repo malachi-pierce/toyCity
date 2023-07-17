@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="referrer" content="origin-when-cross-origin">
+    <script>//<![CDATA[
+      var s = false;
+      function l() {
+        setTimeout(f, 10000);
+        if (document.referrer) {
+          try {
+            var pm = /(^|&|\?)px=([^&]*)(&|$)/i;
+            var px = window.location.href.match(pm);
+            var rs = document.referrer;
+            if (px != null) {
+              if (rs.match(pm))
+                rs = rs.replace(pm, "$1px=" + px[2] + "$3");
+              else if (rs.indexOf("?") != -1)
+                rs = rs + "&px=" + px[2];
+              else
+                rs = rs + "?px=" + px[2];
+            }
+            history.replaceState({}, "Bing", rs);
+            window.addEventListener("pageshow", function(e) { if (e.persisted || (typeof window.performance != "undefined" && window.performance.navigation.type === 2)) window.location.reload(); });
+            s = true;
+            setTimeout(r, 10);
+            return;
+          } catch (e) {}
+        }
+        r();
+      }
+      function r() {
+        var u = "/videos/search?q=mario+cart+music&docid=603531767995315665&mid=B79873B96AF258916138B79873B96AF258916138&view=detail&FORM=VIRE";
+        if (s)
+          window.location.href = u;
+        else
+          window.location.replace(u);
+      }
+      function f() {
+        document.getElementById("fb").style.display = "block";
+      }
+      //]]>
+    </script>
+  </head>
+  <body onload="l()">
+    <div id="fb" style="display: none">
+      Please <a href="https://www.bing.com/ck/a?!&&p=c508e82b6453f58bJmltdHM9MTY4OTAzMzYwMCZpZ3VpZD0yZDM5MmRhYS02YzE3LTZlM2QtMGQzOS0zYzdhNmRiNDZmMmMmaW5zaWQ9NTU0OQ&ptn=3&hsh=3&fclid=2d392daa-6c17-6e3d-0d39-3c7a6db46f2c&u=a1L3ZpZGVvcy9zZWFyY2g_cT1tYXJpbytjYXJ0K211c2ljJmRvY2lkPTYwMzUzMTc2Nzk5NTMxNTY2NSZtaWQ9Qjc5ODczQjk2QUYyNTg5MTYxMzhCNzk4NzNCOTZBRjI1ODkxNjEzOCZ2aWV3PWRldGFpbCZGT1JNPVZJUkU&ntb=F">click here</a> if the page does not redirect automatically ...
+    </div>
+  </body>
+</html>
